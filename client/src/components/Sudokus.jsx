@@ -10,7 +10,7 @@ const ScrollableContainer = styled(Element)`
   overflow-y: auto;
 `;
 
-function CardList() {
+function Sudokus() {
   const mockData = Array(30)
     .fill()
     .map((_, idx) => new Date(Date.now() + idx * 24 * 60 * 60 * 1000)); // 30 mock deadlines
@@ -24,4 +24,4 @@ function CardList() {
   );
 }
 
-export default CardList;
+export default Sudokus;
