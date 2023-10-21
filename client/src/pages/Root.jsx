@@ -6,6 +6,7 @@ import Sudoku from '../components/Sudoku';
 import VisualSquare from '../components/VisualSquare';
 
 import styled from 'styled-components';
+import Grid from '../components/Grid';
 
 const Container = styled.div`
   width: 100%;
@@ -92,6 +93,7 @@ const Root = () => {
     <Container>
       <UpperBack>
         <Cafel>
+          <Grid />
           <CafelRow>
             <VisualSquare bg='#ffffff' op='0.3' />
             <VisualSquare bg='#ffffff' op='0.1' />
