@@ -23,7 +23,7 @@ const SubmitButton = styled.button`
   padding: 10px 15px;
 `;
 
-function Sudoku90s() {
+function Sudoku() {
   const [board, setBoard] = useState(Array(81).fill('')); // Initialize an empty board
 
   const handleInputChange = (index, value) => {
@@ -55,4 +55,4 @@ function Sudoku90s() {
   );
 }
 
-export default Sudoku90s;
+export default Sudoku;
