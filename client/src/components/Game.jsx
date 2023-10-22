@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import BaseButton from './BaseButton';
 import { Link } from 'react-router-dom';
+import { ethers } from 'ethers';
+import { Web3Provider } from '@ethersproject/providers';
+const provider = new Web3Provider(window.ethereum);
+await provider.send('eth_requestAccounts', []);
+const signer = provider.getSigner();
+// Request user's permission
 
 const Wrapper = styled.div`
   position: absolute;
@@ -110,13 +116,110 @@ function Game() {
 
   const handleInputChange = (index, index2, value) => {
     const newBoard = [...board];
-    newBoard[index][index2] = value;
+    newBoard[index][index2] = Number(value);
     setBoard(newBoard);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Handle Sudoku board submission logic here
-    console.log(board);
+    const contractAddress = '0x0a22F19BF63934775CE67D5839EFdE0867De2Af5';
+    const contractABI = [
+      {
+        inputs: [
+          {
+            components: [
+              { internalType: 'uint8', name: 'location', type: 'uint8' },
+              { internalType: 'uint8', name: 'value', type: 'uint8' },
+            ],
+            internalType: 'struct SudoChain.initPoint[]',
+            name: '_layout',
+            type: 'tuple[]',
+          },
+        ],
+        stateMutability: 'nonpayable',
+        type: 'constructor',
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: 'address',
+            name: 'participant',
+            type: 'address',
+          },
+          {
+            indexed: false,
+            internalType: 'uint256',
+            name: 'when',
+            type: 'uint256',
+          },
+          {
+            indexed: false,
+            internalType: 'bool',
+            name: 'isRight',
+            type: 'bool',
+          },
+        ],
+        name: 'SolutionSubmitted',
+        type: 'event',
+      },
+      {
+        inputs: [],
+        name: 'gameEnd',
+        outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+        stateMutability: 'view',
+        type: 'function',
+      },
+      {
+        inputs: [
+          { internalType: 'uint256', name: 'value', type: 'uint256' },
+          { internalType: 'uint8[]', name: 'array', type: 'uint8[]' },
+        ],
+        name: 'hasValue',
+        outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+        stateMutability: 'pure',
+        type: 'function',
+      },
+      {
+        inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+        name: 'initLayout',
+        outputs: [
+          { internalType: 'uint8', name: 'location', type: 'uint8' },
+          { internalType: 'uint8', name: 'value', type: 'uint8' },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+      },
+      {
+        inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+        name: 'participants',
+        outputs: [
+          { internalType: 'address', name: 'participant', type: 'address' },
+          { internalType: 'uint256', name: 'submissionTime', type: 'uint256' },
+          { internalType: 'bool', name: 'success', type: 'bool' },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+      },
+      {
+        inputs: [
+          { internalType: 'uint8[][]', name: 'solution', type: 'uint8[][]' },
+        ],
+        name: 'submitSolution',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+      },
+    ]; // Your contract's ABI here
+
+    // Calling a function that does not change blockchain state and returns a value
+
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+    // Calling a function that does not change blockchain state and returns a value
+    const resultArray = await contract.initLayout(0);
+    console.log(resultArray);
   };
 
   return (
