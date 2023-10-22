@@ -33,7 +33,7 @@ contract SudoChain {
                 require(solution[i][j] > 0, "Invalid solution input");
             }
         }
-        
+
         participants.push(Participant(msg.sender, block.timestamp, isValidSolution(solution) ));
     }
 
@@ -46,6 +46,7 @@ contract SudoChain {
             uint8 rS = 0;
             uint8 cS = 0;
             uint8 sS = 0;
+
             for (uint8 j = 0; j < 9; j++) {
                 // Check rows
                 if (rowSet.length > 0 && hasValue(solution[i][j], rowSet)) {
@@ -77,7 +78,6 @@ contract SudoChain {
         }   
         emit SolutionSubmitted(msg.sender, block.timestamp, true);
         return true;
-        
     }
 
     function hasValue(uint256 value, uint8[] memory array) public pure returns (bool) {
@@ -88,4 +88,14 @@ contract SudoChain {
         }
         return false;
     }
+
+    function getInitLayout() public view returns(initPoint[] memory ){
+        return initLayout;
+    }
+
+
+    function getParticipants() public view returns(initPoint[] memory ){
+        return initLayout;
+    }
+
 }
