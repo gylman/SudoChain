@@ -1,5 +1,5 @@
 # SudoChain
-web3 sudoku
+web3 sudoku. User fills the fields, submits his solution. Once the deadline is reached, the smart contract computes the fastest solver and mints NFT for him
 ## How to run:
 ```
 cd SudoChain
