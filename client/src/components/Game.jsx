@@ -4,9 +4,7 @@ import BaseButton from './BaseButton';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { Web3Provider } from '@ethersproject/providers';
-const provider = new Web3Provider(window.ethereum);
-await provider.send('eth_requestAccounts', []);
-const signer = provider.getSigner();
+
 // Request user's permission
 
 const Wrapper = styled.div`
@@ -133,6 +131,10 @@ function Game() {
 
   const handleSubmit = async () => {
     // Handle Sudoku board submission logic here
+
+    const provider = new Web3Provider(window.ethereum);
+    await provider.send('eth_requestAccounts', []);
+    const signer = provider.getSigner();
     const contractAddress = '0x0a22F19BF63934775CE67D5839EFdE0867De2Af5';
     const contractABI = [
       {
