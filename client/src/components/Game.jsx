@@ -98,18 +98,29 @@ const SubmitButton = styled(BaseButton)`
   margin-top: 20px;
   padding: 10px 15px;
 `;
-const game = Array(81).fill(1);
 const ready = [
-  game.slice(0, 9),
-  game.slice(9, 18),
-  game.slice(18, 27),
-  game.slice(27, 36),
-  game.slice(36, 45),
-  game.slice(45, 54),
-  game.slice(54, 63),
-  game.slice(63, 72),
-  game.slice(72, 81),
+  ['', '', '', 2, 6, '', 7, '', 1],
+  [6, 8, '', '', 7, '', '', 9, ''],
+  [1, 9, '', '', '', 4, 5, '', ''],
+  [8, 2, '', 1, '', '', '', 4, ''],
+  ['', '', 4, 6, '', 2, 9, '', ''],
+  ['', 5, '', '', '', 3, '', 2, 8],
+  ['', '', 9, 3, '', '', '', 7, 4],
+  ['', 4, '', '', 5, '', '', 3, 6],
+  [7, '', 3, '', 1, 8, '', '', ''],
 ];
+
+// const ready2 = [
+//   [1, 1, 1, 1, 1, 1, 0, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1],
+// ];
 
 function Game() {
   const [board, setBoard] = useState(ready); // Initialize an empty board
@@ -216,10 +227,8 @@ function Game() {
     // Calling a function that does not change blockchain state and returns a value
 
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
-    // Calling a function that does not change blockchain state and returns a value
-    const resultArray = await contract.initLayout(0);
-    console.log(resultArray);
+    // or whatever value you want to send
+    const tx = await contract.submitSolution(board);
   };
 
   return (

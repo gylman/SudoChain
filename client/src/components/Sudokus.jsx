@@ -14,6 +14,15 @@ const ScrollableContainer = styled.div`
   padding: 200px 0;
 `;
 
+const SudoChainRoadmap = styled.div`
+  position: absolute;
+  font-size: 36px;
+  font-weight: bold;
+  top: 130px;
+  left: 150px;
+  color: #ffffff;
+`;
+
 function Sudokus() {
   const mockData = [
     {
@@ -76,6 +85,7 @@ function Sudokus() {
 
   return (
     <ScrollableContainer>
+      <SudoChainRoadmap>Roadmap</SudoChainRoadmap>
       {mockData.map((sudoku, index) => (
         <Card
           id={sudoku.id}

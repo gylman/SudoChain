@@ -98,7 +98,9 @@ const Card = ({ id, deadline, status, numPlayers, difficuly }) => {
           <Dot status={status} />
           <Status>{(status === 'done' && 'Completed') || 'Available'}</Status>
         </Container>
-        {status === 'done' && <Title>Results in: {`${deadline - time}`}</Title>}
+        {status === 'done' && (
+          <Title>Results: {`${deadline - time <= 0 || 'are ready'} `}</Title>
+        )}
         {status !== 'done' && <Title>Deadline: {`${deadline}`}</Title>}
         <Tag>{difficuly}</Tag>
       </TopRow>
