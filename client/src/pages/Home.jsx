@@ -71,7 +71,7 @@ const Home = () => {
   return (
     <AbsoluteWrapper>
       <Container>
-        <Title>Sudoku</Title>
+        <Title>SudoChain</Title>
         <Instruction>
           To place a number in a square{' '}
           <strong>— type the number on your keyboard </strong>
