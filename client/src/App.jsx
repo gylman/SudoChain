@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import styled from 'styled-components';
 import Root from './pages/Root';
 import Home from './pages/Home';
+import MintNft from './pages/MintNft';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'sudokus', element: <Sudokus /> },
       { path: 'sudokus/:sudokuId', element: <Game /> },
+      { path: 'sudokus/:sudokuId/check', element: <MintNft /> },
     ],
   },
 ]);

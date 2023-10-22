@@ -15,17 +15,64 @@ const ScrollableContainer = styled.div`
 `;
 
 function Sudokus() {
-  const mockData = Array(9)
-    .fill()
-    .map((_, idx) => {
-      return {
-        id: cuid(),
-        difficulty: 'Easy',
-        status: 'done',
-        numPlayers: Math.floor(Math.random() * 10),
-        deadline: new Date(Date.now() + idx * 24 * 60 * 60 * 1000),
-      };
-    }); // 30 mock deadlines
+  const mockData = [
+    {
+      id: cuid(),
+      difficulty: 'Easy',
+      status: 'done',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Hard',
+      status: 'todo',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Easy',
+      status: 'not_started',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Hard',
+      status: 'done',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Hard',
+      status: 'not_started',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Medium',
+      status: 'done',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Medium',
+      status: 'done',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+    {
+      id: cuid(),
+      difficulty: 'Hard',
+      status: 'not_started',
+      numPlayers: Math.floor(Math.random() * 10),
+      deadline: new Date(Date.now()),
+    },
+  ]; // 30 mock deadlines
 
   return (
     <ScrollableContainer>

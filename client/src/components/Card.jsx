@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import BaseButton from './BaseButton';
 import { Link, NavLink } from 'react-router-dom';
 import Game from './Game';
+import MintNft from '../pages/MintNft';
 
 const TopMostContainer = styled.div`
   padding: 25px 32px 32px 32px;
@@ -11,9 +12,23 @@ const TopMostContainer = styled.div`
   border-radius: 5px;
   max-width: 350px;
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Container = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+`;
+
+const TopRow = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonRow = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
@@ -78,21 +93,29 @@ const Card = ({ id, deadline, status, numPlayers, difficuly }) => {
 
   return (
     <TopMostContainer status={status}>
-      <Container>
-        <Dot status={status} />
-        <Status>{(status === 'done' && 'Completed') || 'Available'}</Status>
-      </Container>
-      {status === 'done' && <Title>Results in: {`${deadline - time}`}</Title>}
-      {status !== 'done' && <Title>Deadline: {`${deadline}`}</Title>}
-      <Tag>{difficuly}</Tag>
-      <Container>
-        <Link to={id}>
-          <StartButton>Start</StartButton>
-        </Link>
+      <TopRow>
+        <Container>
+          <Dot status={status} />
+          <Status>{(status === 'done' && 'Completed') || 'Available'}</Status>
+        </Container>
+        {status === 'done' && <Title>Results in: {`${deadline - time}`}</Title>}
+        {status !== 'done' && <Title>Deadline: {`${deadline}`}</Title>}
+        <Tag>{difficuly}</Tag>
+      </TopRow>
+      <ButtonRow>
+        {(status === 'done' && deadline - time <= 0 && (
+          <Link to={`${id}/check`}>
+            <StartButton>Check</StartButton>
+          </Link>
+        )) || (
+          <Link to={id}>
+            <StartButton>Start</StartButton>
+          </Link>
+        )}
         <Container>
           <Num>Participants: {numPlayers}</Num>
         </Container>
-      </Container>
+      </ButtonRow>
     </TopMostContainer>
   );
 };
