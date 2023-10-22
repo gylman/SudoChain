@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import BaseButton from './components/BaseButton';
 import Sudokus from './components/Sudokus';
-import Sudoku from './components/Sudoku';
+import Game from './components/Game';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'sudokus', element: <Sudokus /> },
-      { path: 'sudokus/:gameId', element: <Sudoku /> },
+      { path: 'sudokus/:sudokuId', element: <Game /> },
     ],
   },
 ]);

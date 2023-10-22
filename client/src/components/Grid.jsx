@@ -3,8 +3,10 @@ import styled from 'styled-components';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(32px, 1fr));
+  gap: 5px;
 `;
 
 const StyledItem = styled.div`
@@ -18,7 +20,7 @@ const StyledItem = styled.div`
 `;
 
 const VisualSquare = (props) => {
-  return <StyledSquare bg={props.bg} op={props.op} />;
+  return <StyledItem bg={props.bg} op={props.op} />;
 };
 
 function Grid() {
@@ -32,13 +34,19 @@ function Grid() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const items = Array.from({ length: numItems - 1 }, (_, i) => `Item ${i + 1}`);
+  const items = Array.from({ length: numItems });
 
   return (
     <StyledGrid>
-      {items.map((item, index) => (
-        <StyledItem key={index}>{item}</StyledItem>
+      {/* {items.map((item, index) => (
+        <VisualSquare key={index} bg='#ffffff' op={Math.random()} />
       ))}
+      {items.map((item, index) => (
+        <VisualSquare key={index} bg='#ffffff' op={Math.random()} />
+      ))}
+      {items.map((item, index) => (
+        <VisualSquare key={index} bg='#ffffff' op={Math.random()} />
+      ))} */}
     </StyledGrid>
   );
 }

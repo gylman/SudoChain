@@ -17,10 +17,15 @@ const StyledButton = styled.button`
   letter-spacing: 0.8px;
   text-transform: uppercase;
   background: #ffffff;
+  &:hover {
+    cursor: pointer;
+    background: #307df6;
+    color: #ffffff;
+  }
 `;
 
-function BaseButton({ onClick }) {
-  return <StyledButton onClick={onClick}>Connect to MetaMask</StyledButton>;
+function BaseButton({ onClick, children }) {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 }
 
 export default BaseButton;

@@ -1,24 +1,43 @@
 // CardList.js
 import React from 'react';
 import styled from 'styled-components';
-import { Element } from 'react-scroll';
-import DeadlineCard from './DeadlineCard';
+import Card from './Card';
+import cuid from 'cuid';
 
-const ScrollableContainer = styled(Element)`
+const ScrollableContainer = styled.div`
+  display: grid;
   width: 100%;
-  height: 500px; // Adjust based on your needs
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 350px);
+  gap: 10px;
   overflow-y: auto;
+  padding: 200px 0;
 `;
 
 function Sudokus() {
-  const mockData = Array(30)
+  const mockData = Array(9)
     .fill()
-    .map((_, idx) => new Date(Date.now() + idx * 24 * 60 * 60 * 1000)); // 30 mock deadlines
+    .map((_, idx) => {
+      return {
+        id: cuid(),
+        difficulty: 'Easy',
+        status: 'done',
+        numPlayers: Math.floor(Math.random() * 10),
+        deadline: new Date(Date.now() + idx * 24 * 60 * 60 * 1000),
+      };
+    }); // 30 mock deadlines
 
   return (
     <ScrollableContainer>
-      {mockData.map((deadline, index) => (
-        <DeadlineCard key={index} deadline={deadline} />
+      {mockData.map((sudoku, index) => (
+        <Card
+          id={sudoku.id}
+          key={index}
+          deadline={sudoku.deadline}
+          status={sudoku.status}
+          numPlayers={sudoku.numPlayers}
+          difficuly={sudoku.difficulty}
+        />
       ))}
     </ScrollableContainer>
   );
